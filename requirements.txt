@@ -1,0 +1,12 @@
+requests
+pdfplumber
+unidecode
+pymupdf
+openpyxl
+python-dotenv
+pandas
+pyinstaller
+pytz
+pywin32; platform_system == "Windows"
+xlwings; platform_system == "Windows"
+streamlit
