@@ -384,7 +384,7 @@ def preparar_campos_nfts(campos: dict) -> dict:
         "ccm_sanity": campo_num(campos.get("ccm_sanity", "30993881"), 8),
         "data_inicio": campo_num(campos.get("data_inicio") or campos.get("data_prestacao"), 8),
         "data_fim": campo_num(campos.get("data_fim") or campos.get("data_prestacao"), 8),
-        "tipo_registro_detalhe": campo_num(campos.get("tipo_registro_detalhe", "4"), 1),
+        "tipo_registro": campo_num(campos.get("tipo_registro", "4"), 1),
         "tipo_documento": campo_num(campos.get("tipo_documento", "02"), 2),
         "serie": campo_texto(campos.get("serie", "7"), 5),
         "numero_documento": campo_num(campos.get("numero_documento", "4329"), 12),
@@ -432,7 +432,7 @@ def gerar_txt_lote(registros: list[dict]) -> str:
     detalhes = []
     for c in preparados:
         detalhes.append(
-            c["tipo_registro_detalhe"] + c["tipo_documento"] + c["serie"] + c["numero_documento"]
+            c["tipo_registro"] + c["tipo_documento"] + c["serie"] + c["numero_documento"]
             + c["data_prestacao"] + c["situacao"] + c["tributacao"] + c["valor_servicos"]
             + c["valor_deducoes"] + c["codigo_servico"] + c["codigo_subitem"] + c["aliquota"]
             + c["iss_retido"] + c["indicador_cpf_cnpj"] + c["cnpj_prestador"] + c["ccm_prestador"]
