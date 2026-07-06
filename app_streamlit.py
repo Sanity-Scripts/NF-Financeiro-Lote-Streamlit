@@ -498,7 +498,7 @@ def inject_style() -> None:
         .stApp {{
             background:
                 radial-gradient(circle at top left, rgba(255, 255, 255, 0.14), transparent 34rem),
-                linear-gradient(135deg, #1F029F 0%, #330062 100%);
+                linear-gradient(135deg, #00000 0%, #3b3b3b 100%);
             color: #f7fbff;
         }}
         {background_logo}
@@ -549,7 +549,7 @@ def inject_style() -> None:
         .stButton > button, .stDownloadButton > button, .stFormSubmitButton > button {{
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.22);
-            background: linear-gradient(135deg, #1F029F, #330062);
+            background: linear-gradient(75deg, #000000, #3b3b3b);
             color: white;
             min-height: 2.75rem;
             font-weight: 700;
