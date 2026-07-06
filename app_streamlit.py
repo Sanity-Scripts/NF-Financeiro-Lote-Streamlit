@@ -404,7 +404,7 @@ def preparar_campos_nfts(campos: dict) -> dict:
         "tipo_logradouro": campo_texto(campos.get("tipo_logradouro"), 3),
         "endereco": campo_texto(campos.get("endereco"), 50),
         "numero": campo_texto(campos.get("numero"), 10),
-        "complemento": campo_texto(campos.get("complemento"), 30),
+        "complemento": campo_texto(campos.get("complemento", " "), 30),
         "bairro": campo_texto(campos.get("bairro"), 30),
         "cidade": campo_texto(campos.get("cidade"), 50),
         "uf": campo_texto(campos.get("uf"), 2),
