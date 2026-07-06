@@ -382,13 +382,13 @@ def preparar_campos_nfts(campos: dict) -> dict:
         "tipo": campo_num(campos.get("tipo", "1"), 1),
         "versao": campo_num(campos.get("versao", "001"), 3),
         "ccm_sanity": campo_num(campos.get("ccm_sanity", "30993881"), 8),
-        "data_inicio": campo_num(campos.get("data_inicio") or campos.get("data_prestacao"), 8),
-        "data_fim": campo_num(campos.get("data_fim") or campos.get("data_prestacao"), 8),
+        "data_inicio": campo_num(campos.get("data_inicio") or campos.get("data_emissao"), 8),
+        "data_fim": campo_num(campos.get("data_fim") or campos.get("data_emissao"), 8),
         "tipo_registro": campo_num(campos.get("tipo_registro", "4"), 1),
         "tipo_documento": campo_num(campos.get("tipo_documento", "02"), 2),
-        "serie": campo_texto(campos.get("serie", "7"), 5),
+        "serie": campo_texto(campos.get("serie"), 5),
         "numero_documento": campo_num(campos.get("numero_documento", "4329"), 12),
-        "data_prestacao": campo_num(campos.get("data_prestacao"), 8),
+        "data_emissao": campo_num(campos.get("data_emissao"), 8),
         "situacao": campo_texto(campos.get("situacao", "N"), 1),
         "tributacao": campo_texto(campos.get("tributacao", "T"), 1),
         "valor_servicos": campo_num(campos.get("valor_servicos", "0"), 15),
@@ -424,7 +424,7 @@ def gerar_txt_lote(registros: list[dict]) -> str:
     qtd_notas = len(preparados)
     total_servicos = str(sum(int(item["valor_servicos"]) for item in preparados)).zfill(15)[-15:]
     total_deducoes = str(sum(int(item["valor_deducoes"]) for item in preparados)).zfill(15)[-15:]
-    datas = [item["data_prestacao"] for item in preparados if item["data_prestacao"] != "00000000"]
+    datas = [item["data_emissao"] for item in preparados if item["data_emissao"] != "00000000"]
     data_inicio = min(datas) if datas else preparados[0]["data_inicio"]
     data_fim = max(datas) if datas else preparados[0]["data_fim"]
 
@@ -433,7 +433,7 @@ def gerar_txt_lote(registros: list[dict]) -> str:
     for c in preparados:
         detalhes.append(
             c["tipo_registro"] + c["tipo_documento"] + c["serie"] + c["numero_documento"]
-            + c["data_prestacao"] + c["situacao"] + c["tributacao"] + c["valor_servicos"]
+            + c["data_emissao"] + c["situacao"] + c["tributacao"] + c["valor_servicos"]
             + c["valor_deducoes"] + c["codigo_servico"] + c["codigo_subitem"] + c["aliquota"]
             + c["iss_retido"] + c["indicador_cpf_cnpj"] + c["cnpj_prestador"] + c["ccm_prestador"]
             + c["razao_social"] + c["tipo_logradouro"] + c["endereco"] + c["numero"]
