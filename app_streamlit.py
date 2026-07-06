@@ -412,7 +412,7 @@ def preparar_campos_nfts(campos: dict) -> dict:
         "email": campo_texto(campos.get("email"), 75, maiusculo=True),
         "tipo_nfts": campo_num(campos.get("tipo_nfts", "1"), 1),
         "regime_tributacao": campo_num(campos.get("regime_tributacao") or regime_por_tipo_empresa(tipo_empresa), 1),
-        "data_pagamento": campo_num(campos.get("data_pagamento", "0"), 8),
+        "data_pagamento": campo_texto(campos.get("data_pagamento", " "), 8),
         "discriminacao": campo_discriminacao(campos.get("discriminacao")),
         "tipo_registro_trailer": campo_num(campos.get("tipo_registro_trailer", "9"), 1),
         "total_deducoes": campo_num(campos.get("total_deducoes") or campos.get("valor_deducoes", "0"), 15),
