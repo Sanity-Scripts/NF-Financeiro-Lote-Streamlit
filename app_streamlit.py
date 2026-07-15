@@ -447,6 +447,8 @@ def gerar_txt_lote(registros: list[dict]) -> str:
 def gerar_zip_txts_planilha(uploaded_file, qtd_por_lote: int) -> tuple[bytes, int, int]:
     qtd_por_lote = max(1, int(qtd_por_lote or 50))
     df = pd.read_excel(uploaded_file, dtype=str).fillna("")
+    df = df[  (df.n_nota.apply(str).str.strip() != "") & (df.valor_servicos.apply(str).str.strip() != "") & (df.cnpj_prestador.apply(str).str.strip() != "") ]  # Filtra apenas registros com n_nota preenchido
+    
     registros = df.to_dict(orient="records")
     if not registros:
         raise ValueError("Planilha revisada sem registros.")
